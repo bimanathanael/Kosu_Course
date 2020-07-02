@@ -8,11 +8,18 @@ class HomeController {
     }
 
     static chatRoom (req, res) {
-        res.render("./instructors/chatRoom")
+        let id = +req.params.id 
+        console.log(req.session.InstructorId)
+        Instructor.findByPk(id) 
+        .then((data) => {
+            res.render(`./instructors/chatRoom`, {data})
+        })
     }
 
     static registerStudent(req, res) {
-        res.render(`./students/registerStudent`)
+        let error = req.app.locals.error
+        delete req.app.locals.error
+        res.render(`./students/registerStudent`, {error})
     }
     
     static createStudent(req, res) {
@@ -31,12 +38,15 @@ class HomeController {
             err.errors.forEach(error => {
                 errors.push(error.message)
             })
-            res.send(errors)
+            req.app.locals.error = errors
+            res.redirect(`/registerStudent`)
         })
     }
 
     static registerTeacher(req, res) {
-        res.render(`./instructors/registerInstructor`)
+        let error = req.app.locals.error
+        delete req.app.locals.error
+        res.render(`./instructors/registerInstructor`, {error})
     }
     
     static createTeacher(req, res) {
@@ -55,18 +65,21 @@ class HomeController {
             err.errors.forEach(error => {
                 errors.push(error.message)
             })
-            res.send(errors)
+            req.app.locals.error = errors
+            res.redirect(`/registerInstructor`)
         })
     }
 
     static login(req, res) {
-        res.render(`loginForm`)
+        let error = req.app.locals.error
+        delete req.app.locals.error
+        res.render(`loginForm`, {error})
     }
 
     static logout(req, res) {
         req.session.destroy(function(err) {
             if (err) {
-                res.send(err)
+                res.render(`error`, {err})
             } else {
                 res.redirect(`/`)
             }
@@ -84,20 +97,23 @@ class HomeController {
                     req.session.userType = `student`
                     res.redirect(`/students/${req.session.StudentId}`)
                 } else {
-                    res.send(`error! cant find ID!`)
+                    req.app.locals.error = `Invalid Password!`
+                    res.redirect(`/login`)
                 }
             }
         })
         .then((data) => {
             if(!data) {
-                res.redirect(`/`)
+                req.app.locals.error = `Invalid Email or Password!`
+                res.redirect(`/login`)
             } else {
                 if (bcrypt.compareSync(req.body.password, data.password)){
                     req.session.InstructorId = data.id
                     req.session.userType = `teacher`
-                    res.redirect(`/courses/dashboard`)
+                    res.redirect(`/courses/dashboard/${req.session.InstructorId}`)
                 } else {
-                    res.send(`error! cant find ID!`)
+                    req.app.locals.error = `Invalid Password!`
+                    res.redirect(`/login`)
                 }
             }
         })

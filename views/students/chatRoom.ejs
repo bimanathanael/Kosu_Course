@@ -8,6 +8,7 @@
     <title>Chat Room</title>
 </head>
 <body>
+    <%let fullName = data.full_name%>
     <h2> Kosu Chat Room</h2>
     <div class="chat-container">
         <header class="chat-header">
@@ -60,7 +61,7 @@
                     div.classList.add('message')
                     let d = new Date()
                     let currentTime = `${d.getHours()}:${d.getMinutes()}`
-                    div.innerHTML = `<p class="meta">Brad <span>${currentTime}</span></p>
+                    div.innerHTML = `<p class="meta">${fullName}<span>${currentTime}</span></p>
                     <p class="text">
                         ${msg}
                         </p>`

@@ -9,6 +9,7 @@
 </head>
 <body>
     <h2> Kosu Chat Room</h2>
+    <%let fullName = data.full_name%>
     <div class="chat-container">
         <header class="chat-header">
             <a href="/courses/dashboard" class="btn">Leave Room: Instructor</a>
@@ -36,7 +37,7 @@
                 <button class="btn"><i class="fas fa-paper-plane"></i> Send</button>
             </form>
         </div>
-        <script src="/socket.io/socket.io.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
         <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
         <script >
             
@@ -60,7 +61,7 @@
                     div.classList.add('message')
                     let d = new Date()
                     let currentTime = `${d.getHours()}:${d.getMinutes()}`
-                    div.innerHTML = `<p class="meta">Brad <span>${currentTime}</span></p>
+                    div.innerHTML = `<p class="meta">${fullName}<span>${currentTime}</span></p>
                     <p class="text">
                         ${msg}
                         </p>`

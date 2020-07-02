@@ -12,9 +12,9 @@ function checkSessionInstructor(req, res, next) {
 
 router.use(checkSessionInstructor)
 
-router.get('/chatRoom', HomeController.chatRoom)
+router.get('/chatRoom/:id', HomeController.chatRoom)
 
-router.get('/dashboard', coursesController.dashboard)
+router.get('/dashboard/:id', coursesController.dashboard)   
 
 router.get('/', coursesController.view)
 

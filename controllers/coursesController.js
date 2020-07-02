@@ -3,7 +3,11 @@ const  { Course, Instructor, Chapter, Student } = require('../models/index')
 class CoursesController{
 
     static dashboard (req, res){
-        res.render("./instructors/dashboard")
+        let id = +req.params.id
+        Instructor.findByPk(id)
+        .then((data) => {
+            res.render("./instructors/dashboard", {data})
+        })
     }
 
     static view (req, res){
@@ -31,7 +35,9 @@ class CoursesController{
     static addCourse (req, res){
         Instructor.findAll()
             .then( instructor => {
-                res.render("./instructors/addCourse", {instructor})
+                let error = req.app.locals.error
+                delete req.app.locals.error
+                res.render("./instructors/addCourse", {instructor, error})
             })
             .catch( err => {
                 res.send(err)
@@ -49,7 +55,12 @@ class CoursesController{
                 res.redirect('/courses')
             })
             .catch( err => {
-                res.render("error", {err:err.errors[0].message})
+                let errors = []
+                err.errors.forEach(error => {
+                    errors.push(error.message)
+                })
+                req.app.locals.error = errors
+                res.redirect(`/courses/addCourse`)
             })
     }
 
@@ -59,7 +70,11 @@ class CoursesController{
             .then( course => {
                 Instructor.findAll() 
                     .then( instructor =>{
-                        res.render('./instructors/editCourse' , { course , instructor})
+                        let error = req.app.locals.error
+                        let warning = req.app.locals.warning
+                        delete req.app.locals.error
+                        delete req.app.locals.warning
+                        res.render('./instructors/editCourse' , { course , instructor, error, warning})
                     })
                     .catch( err => {
                         res.send(err)
@@ -86,7 +101,12 @@ class CoursesController{
                 res.redirect('/courses')
             })
             .catch( err => {
-                res.render("error", {err:err.errors[0].message})
+                let errors = []
+                err.errors.forEach(error => {
+                    errors.push(error.message)
+                })
+                req.app.locals.error = errors
+                res.redirect(`/courses/editCourse/${editedCourse.id}`)
             })
     }
 
@@ -109,14 +129,19 @@ class CoursesController{
         const addNewChapter = {
             name : req.body.name,
             content : req.body.content,
-            CourseId : req.params.id
+            CourseId : +req.params.id
         }
         Chapter.create(addNewChapter)
             .then( data => {
                 res.redirect(`/courses/editCourse/${req.params.id}`)
             })
             .catch( err => {
-                res.render("error", {err:err.errors[0].message})
+                let errors = []
+                err.errors.forEach(error => {
+                    errors.push(error.message)
+                })
+                req.app.locals.warning = errors
+                res.redirect(`/courses/editCourse/${req.params.id}`)
             })
     }
 }

@@ -34,6 +34,6 @@ io.on('connection', socket => {
 })
 app.use(`/`, routes)
 
-app.listen(port, () => {
+server.listen(port, () => {
     console.log(`KOSU, ONLINE NOW AT PORT ${port}`)
 })

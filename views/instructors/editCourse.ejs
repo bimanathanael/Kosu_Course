@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Course</title>
     <h3> Add Course Form </h3>
+    <%if (error) {%>
+        <div>
+        <%=error%>
+        </div>
+    <%}%>
     <a href="/courses"> < Courses List </a> <br> <br>
 
     <h3> Course Details </h3>
@@ -26,8 +31,9 @@
     <br>
     <hr>
     <h3> Chapter Details </h3>
-
+    
     <br>
+    
     <table border="1">
         <tr>
             <th>id</th>
@@ -45,6 +51,11 @@
 
     </table>
     <br>
+    <%if (warning) {%>
+        <div>
+        <%=warning%>
+        </div>
+    <%}%>
     <form action="/courses/addChapter/<%= course.id %>" method="POST">
         Chapter name : <br> 
         <input name="name" > <br><br> 
