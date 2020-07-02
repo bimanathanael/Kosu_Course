@@ -1,19 +1,20 @@
 const  { Course, Instructor, Chapter, Student } = require('../models/index')
+const getFullName = require(`../helpers/function`)
 
 class CoursesController{
 
     static dashboard (req, res){
-        let id = +req.params.id
-        Instructor.findByPk(id)
-        .then((data) => {
-            res.render("./instructors/dashboard", {data})
-        })
+        res.render("./instructors/dashboard")
+    }
+
+    static chatRoom (req, res) {
+        res.render(`./instructors/chatRoom`)
     }
 
     static view (req, res){
         Course.findAll({include : [Instructor]})
             .then( data => {
-                res.render("./instructors/manageCourses", {data})
+                res.render("./instructors/manageCourses", {data, getFullName})
             })
             .catch( err => {
                 res.send(err)

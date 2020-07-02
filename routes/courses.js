@@ -1,6 +1,5 @@
 const router = require('express').Router()
 const coursesController = require('../controllers/coursesController')
-const HomeController = require('../controllers/HomeController')
 
 function checkSessionInstructor(req, res, next) {
     if (req.session.InstructorId) {
@@ -12,9 +11,9 @@ function checkSessionInstructor(req, res, next) {
 
 router.use(checkSessionInstructor)
 
-router.get('/chatRoom/:id', HomeController.chatRoom)
+router.get('/chatRoom', coursesController.chatRoom)
 
-router.get('/dashboard/:id', coursesController.dashboard)   
+router.get('/dashboard', coursesController.dashboard)   
 
 router.get('/', coursesController.view)
 

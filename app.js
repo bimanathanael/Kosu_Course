@@ -19,10 +19,10 @@ app.use(session({
 }))
 io.on('connection', socket => {
     socket.emit('message','welcome to chatRoom')
-    socket.broadcast.emit('message', "A user has join the chat")
+    socket.broadcast.emit('message', "Someone has join the chat")
     
     socket.on('disconnect', () => {
-        io.emit('message',"a User has left the chat")
+        io.emit('message',"Someone has left the chat")
     })
     
     socket.on('chatMessage' ,(msg) => {

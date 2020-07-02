@@ -8,12 +8,10 @@
     <title>Chat Room</title>
 </head>
 <body>
-    <%let fullName = data.full_name%>
     <h2> Kosu Chat Room</h2>
     <div class="chat-container">
         <header class="chat-header">
-            <a href="/courses/dashboard" class="btn">Leave Room: Instructor</a>
-            <a href="/students" class="btn">Leave Room: Student</a>
+            <a href="/students/<%=id%>" class="btn">Leave Room: Student</a>
         </header>
         <main class="chat-main">
             <div class="chat-sidebar">
@@ -37,31 +35,31 @@
                 <button class="btn"><i class="fas fa-paper-plane"></i> Send</button>
             </form>
         </div>
-        <script src="/socket.io/socket.io.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
         <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
         <script >
             
            $(function () { 
                 var socket = io();
                 socket.on('message', message => {
-                    outputMsg(message)
+                    outputMsg(message, `Instructor`)
                 });
                 $('form').submit(function(){
                     const msg = document.getElementById('msgChat').value
                     
                     socket.emit('chatMessage', msg);
                     console.log(msg);
-                    outputMsg(msg)
+                    outputMsg(msg, `Student`)
                     
                     return false;
                 });
                 
-                function outputMsg(msg) {
+                function outputMsg(msg, user) {
                     const div = document.createElement('div')
                     div.classList.add('message')
                     let d = new Date()
                     let currentTime = `${d.getHours()}:${d.getMinutes()}`
-                    div.innerHTML = `<p class="meta">${fullName}<span>${currentTime}</span></p>
+                    div.innerHTML = `<p class="meta">${user}<span> ${currentTime}</span></p>
                     <p class="text">
                         ${msg}
                         </p>`

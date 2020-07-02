@@ -9,11 +9,9 @@
 </head>
 <body>
     <h2> Kosu Chat Room</h2>
-    <%let fullName = data.full_name%>
     <div class="chat-container">
         <header class="chat-header">
             <a href="/courses/dashboard" class="btn">Leave Room: Instructor</a>
-            <a href="/students" class="btn">Leave Room: Student</a>
         </header>
         <main class="chat-main">
             <div class="chat-sidebar">
@@ -44,24 +42,24 @@
            $(function () { 
                 var socket = io();
                 socket.on('message', message => {
-                    outputMsg(message)
+                    outputMsg(message, `Student`)
                 });
                 $('form').submit(function(){
                     const msg = document.getElementById('msgChat').value
                     
                     socket.emit('chatMessage', msg);
                     console.log(msg);
-                    outputMsg(msg)
+                    outputMsg(msg, `Instructor`)
                     
                     return false;
                 });
                 
-                function outputMsg(msg) {
+                function outputMsg(msg,user) {
                     const div = document.createElement('div')
                     div.classList.add('message')
                     let d = new Date()
                     let currentTime = `${d.getHours()}:${d.getMinutes()}`
-                    div.innerHTML = `<p class="meta">${fullName}<span>${currentTime}</span></p>
+                    div.innerHTML = `<p class="meta">${user}<span> ${currentTime}</span></p>
                     <p class="text">
                         ${msg}
                         </p>`

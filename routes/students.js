@@ -1,6 +1,5 @@
 const router = require(`express`).Router()
 const StudentController = require(`../controllers/StudentController`)
-const HomeController = require(`../controllers/HomeController`)
  
 function checkSessionStudent(req, res, next) {
     if (req.session.StudentId && req.session.userType === `student`) {
@@ -12,9 +11,7 @@ function checkSessionStudent(req, res, next) {
 
 router.use(checkSessionStudent)
 
-router.get('/chatRoom', HomeController.chatRoom)
-
-router.get('/chatRoom', HomeController.chatRoom)
+router.get('/chatRoom/:id', StudentController.chatRoom)
 
 router.get(`/courseList`, StudentController.courseList)
 

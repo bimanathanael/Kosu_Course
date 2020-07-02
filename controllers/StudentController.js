@@ -11,6 +11,11 @@ class StudentController {
         })
     }
 
+    static chatRoom (req, res) {
+        let id = +req.params.id
+        res.render(`./students/chatRoom`, {id})
+    }
+
     static addCourse(req, res) {
         let id = +req.params.id
         let studentData;

@@ -7,15 +7,6 @@ class HomeController {
         res.render(`homepage`)
     }
 
-    static chatRoom (req, res) {
-        let id = +req.params.id 
-        console.log(req.session.InstructorId)
-        Instructor.findByPk(id) 
-        .then((data) => {
-            res.render(`./instructors/chatRoom`, {data})
-        })
-    }
-
     static registerStudent(req, res) {
         let error = req.app.locals.error
         delete req.app.locals.error
@@ -110,7 +101,7 @@ class HomeController {
                 if (bcrypt.compareSync(req.body.password, data.password)){
                     req.session.InstructorId = data.id
                     req.session.userType = `teacher`
-                    res.redirect(`/courses/dashboard/${req.session.InstructorId}`)
+                    res.redirect(`/courses/dashboard`)
                 } else {
                     req.app.locals.error = `Invalid Password!`
                     res.redirect(`/login`)
