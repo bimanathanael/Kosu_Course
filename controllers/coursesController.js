@@ -44,7 +44,7 @@ class CoursesController{
                 res.redirect('/courses')
             })
             .catch( err => {
-                res.send(err)
+                res.render("error", {err:err.errors[0].message})
             })
     }
 
@@ -81,7 +81,7 @@ class CoursesController{
                 res.redirect('/courses')
             })
             .catch( err => {
-                res.send(err)
+                res.render("error", {err:err.errors[0].message})
             })
     }
 
@@ -111,7 +111,7 @@ class CoursesController{
                 res.redirect(`/courses/editCourse/${req.params.id}`)
             })
             .catch( err => {
-                res.send(err)
+                res.render("error", {err:err.errors[0].message})
             })
     }
 }

@@ -33,6 +33,10 @@ class MainController{
             res.send(err)
         })
     }
+
+    static chatRoom (req, res) {
+        res.render("chatRoom")
+    }
 }
 
 module.exports = MainController

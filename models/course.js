@@ -15,8 +15,22 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.STRING,
     InstructorId: DataTypes.INTEGER
   }, {
+    hooks: {
+      beforeCreate: (course) => {
+        if(!course.description){
+          course.description = "Description not given";
+        };
+      }
+    },
     sequelize,
     modelName: 'Course',
+    validate : {
+      formValidator() {
+        if ( !this.name || !this.InstructorId) {
+          throw new Error(" Please complete all requirement ")
+        }
+      }
+    }
   });
   return Course;
 };

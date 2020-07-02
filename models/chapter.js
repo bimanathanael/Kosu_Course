@@ -15,6 +15,13 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Chapter',
+    validate : {
+      formValidator() {
+        if ( !this.name || !this.content) {
+          throw new Error(" Please complete all requirement ")
+        }
+      }
+    }
   });
   return Chapter;
 };
