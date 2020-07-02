@@ -1,0 +1,28 @@
+{
+  "name": "kosu_course",
+  "version": "1.0.0",
+  "description": "Kosu Course Phase 1 Hacktiv8",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bimanathanael/Kosu_Course.git"
+  },
+  "author": "Kosu-Engineer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bimanathanael/Kosu_Course/issues"
+  },
+  "homepage": "https://github.com/bimanathanael/Kosu_Course#readme",
+  "dependencies": {
+    "ejs": "^3.1.3",
+    "express": "^4.17.1",
+    "pg": "^8.2.1",
+    "sequelize": "^6.2.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
