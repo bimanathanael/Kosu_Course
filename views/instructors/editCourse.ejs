@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Course</title>
+    <h3> Add Course Form </h3>
+    <a href="/courses"> < Courses List </a> <br> <br>
+
+    <h3> Course Details </h3>
+    <form action="/courses/editCourse/<%= course.id %>" method="POST">
+        Course name : <br> 
+        <input name="name" value="<%=course.name%>" > <br><br> 
+        Description : <br> 
+        <input name="description" value="<%=course.description%>" > <br><br> 
+        Instructor: <br> 
+        <select name="instructor" >
+            <% instructor.forEach(item => { %>
+            <option value="<%= item.dataValues.id %>" <%= (course.InstructorId == item.id) ? "selected" : "" %> > <%= item.dataValues.full_name %>  </option>
+            <% }) %>
+
+        </select> <br><br>
+        <input type="submit">
+    </form>
+
+    <br>
+    <hr>
+    <h3> Chapter Details </h3>
+
+    <br>
+    <table border="1">
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>content</th>
+        </tr>
+        <%course.Chapters.forEach( item => { %>
+        <tr>
+            <td><%= item.id %> </td>
+            <td><%= item.name %> </td>
+            <td><%= item.content %> </td>
+        </tr>
+        <% }) %>
+
+
+    </table>
+    <br>
+    <form action="/courses/addChapter/<%= course.id %>" method="POST">
+        Chapter name : <br> 
+        <input name="name" > <br><br> 
+        Content : <br> 
+        <input name="content" > <br><br> 
+        <input type="submit" value="add chapter">
+    </form>
+
+    
+</head>
+<body>
+    
+</body>
+</html>

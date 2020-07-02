@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Take New Course</title>
+</head>
+<body>
+    <h1>Add New Course</h1>
+    <button onclick="window.history.back()">Back to Course's List</button><br><br>
+    <form action="/students/courses/add/<%=studentData.id%>" method="POST">
+    <label for="CourseId">Choose New Course:</label><br>
+    <select name="CourseId" id="CourseId">
+        <%data.forEach(item => {%>
+            <option value="<%=item.id%>"><%=item.name%></option>
+        <%})%>
+    </select><br><br>
+    <button type="submit">Add Course</button>
+    </form>
+</body>
+</html>

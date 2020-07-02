@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Student</title>
+</head>
+<body>
+    <h1>Come and Join Kosu!</h1>
+    <form action="/registerStudent" method="POST">
+        <label for="first_name">First Name</label><br>
+        <input type="text" name="first_name" id="first_name" placeholder="John"><br>
+        <label for="last_name">Last Name</label><br>
+        <input type="text" name="last_name" id="last_name" placeholder="Doe"><br>
+        <label for="email">Email</label><br>
+        <input type="email" name="email" id="email" placeholder="yourname@example.com"><br>
+        <label for="myinput">Password</label><br>
+        <input type="password" name="password" id="myinput" placeholder="*****">
+        <br><br>
+        <button type="submit">Register</button>
+    </form>
+    <br>
+    Already have an account? go <a href="/login">login</a>
+</body>
+</html>

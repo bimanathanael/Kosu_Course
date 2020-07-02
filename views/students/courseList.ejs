@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses Available</title>
+</head>
+<body>
+    <h1>Courses Available</h1>
+    <button onclick="window.history.back()">Back to Course's List</button><br><br>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Course</th>
+                <th>Instructor</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%let counter = 1%>
+           <%data.forEach(item => {%>
+                <tr>
+                    <td><%=counter%></td>
+                    <td><%=item.name%></td>
+                    <td><%=item.Instructor.full_name%></td>
+                    <td>
+                        <a href="/students/chapterList/<%=item.id%>">Course Detail</a>
+                    </td>
+                </tr>
+                <%counter++%>
+            <%})%>
+        </tbody>
+    </table>
+</body>
+</html>

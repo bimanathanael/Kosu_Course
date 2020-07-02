@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student's Page</title>
+</head>
+<body>
+    <h1>Welcome back, <%=data.first_name%></h1><br>
+    <form action="/logout" method="POST">
+        <button type="submit">Logout</button>
+    </form><br>
+    <a href="/students/chatRoom"> Chat Room </a> <br> <br>
+    <a href="/students/courseList">Courses Available</a>
+    <a href="/students/courses/add/<%=data.id%>">Take New Course</a>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Course Taken</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%let counter = 1%>
+           <%data.Courses.forEach(item => {%>
+                <tr>
+                    <td><%=counter%></td>
+                    <td><%=item.name%></td>
+                    <td><%=item.description%></td>
+                    <td>
+                        <a href="/students/activeCourse/<%=item.id%>">Open Course</a>
+                        <a href="/students/course/delete/<%=item.id%>/<%=data.id%>">delete</a>
+                    </td>
+                </tr>
+                <%counter++%>
+            <%})%>
+        </tbody>
+    </table>
+</body>
+</html>
