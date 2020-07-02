@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Course</title>
+</head>
+<body>
+    <h2> Detail Course </h2>
+    <a href="/courses"> < Courses List </a> <br> <br>
+    Course : 
+    <a> <%=data.name %></a>  <br>
+    By Instructor :
+    <a> <%=data.Instructor.dataValues.full_name %> </a> 
+    <br>
+    Details : 
+    <a> <%=data.description %> </a>
+    <br>
+    <br>
+    Chapter:<br>
+    <% data.Chapters.forEach( item=> { %>
+    <a> <%=item.name %> </a><br>
+    <a> <%=item.content %> </a><br>
+    <br>
+    <% }) %>
+
+    Students : <br>
+    <% data.Students.forEach( student=> { %>
+        <li> <%= student.full_name %> </li>
+    <% }) %>
+
+</body>
+</html>
