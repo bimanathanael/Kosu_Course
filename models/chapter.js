@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Chapter.belongsTo(models.Course)
     }
-  };
+  }; 
   Chapter.init({
     name: DataTypes.STRING,
     content: DataTypes.TEXT,
