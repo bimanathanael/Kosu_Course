@@ -1,17 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-</head>
-<body>
+<%-include (`./header`, {title: `Kōsu Home`})%>
     <h1> Welcome to KOSU </h1>
     <h3> FREE Japanese Online Learning Module </h3>
-
-    <a href="/login">Login</a> | 
-    <a href="/registerStudent">Register as Student</a>
-    <a href="/registerInstructor">Register as Instructor</a>
-    
-</body>
-</html>
+    <a href="/registerStudent" class="btn btn-primary my-2 my-sm-0" role="button">Register as Student</a>
+    <a href="/registerInstructor" class="btn btn-primary my-2 my-sm-0" role="button">Register as Instructor</a>
+<%-include (`./script`)%>
+<%-include (`./footer`)%>

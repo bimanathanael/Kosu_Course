@@ -15,11 +15,16 @@
       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            <li class="nav-item <%=statusHome%>">
+              <a class="nav-link" href="<%=linkHome%>">Home<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item <%=statusCourse%>">
+              <a class="nav-link" href="<%=linkCourse%>">Courses</a>
             </li>
           </ul>
-            <span style="color: white; font-weight: bold;">Have an Account?&nbsp&nbsp</span><a class="btn btn-success my-2 my-sm-0" href="/login" role="button">Login</a>
+          <form action="/logout" method="POST">
+            <span style="color: white; font-weight: bold;">Sign out?&nbsp&nbsp</span><button class="btn btn-warning my-2 my-sm-0" type="submit">Logout</button>
+          </form> 
         </div>
     </nav>
 <div class="jumbotron"> 

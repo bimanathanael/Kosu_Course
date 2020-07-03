@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Course</title>
-    <h3> Add Course Form </h3>
+<%-include (`../headerLogin`, {title: `Add New Course`, linkCourse: `/courses`, linkHome: `/courses/dashboard`, statusHome: ``, statusCourse: `active`})%>
+    <h1> Add Course</h1>
     <%if (error) {%>
         <div>
         <%=error%>
         </div>
     <%}%>
-    <a href="/courses"> < Courses List </a> <br> <br>
+    <br>
+    <a href="/courses" class="btn btn-secondary my-2 my-sm-0" role="button"> Back to Course's List </a> <br> <br>
     <form action="/courses/addCourse" method="POST">
         Course name : <br> 
         <input name="name"> <br><br> 
@@ -24,10 +20,10 @@
             <% }) %>
 
         </select> <br><br>
-        <input type="submit">
+        <button class="btn btn-primary my-2 my-sm-0" type="submit">Add Course</button>
     </form>
 </head>
 <body>
     
-</body>
-</html>
+    <%-include (`../script`)%>
+    <%-include (`../footer`)%>

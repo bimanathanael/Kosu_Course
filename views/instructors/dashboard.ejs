@@ -1,17 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-</head>
-<body>
-    <form action="/logout" method="POST">
-        <button type="submit">Logout</button>
-    </form><br>
-    <h3> Course Dashboard </h3>
-    <a href="/courses"> Manage Course </a> <br> <br>
-    <a href="/courses/chatRoom"> Chat Room </a> <br> <br>
-    
-</body>
-</html>
+<%-include (`../headerLogin`, {title: `Instructor's Home`, linkCourse: `/courses`, linkHome: `/courses/dashboard`, statusHome: `active`, statusCourse: ``})%>
+    <h1> Welcome, Instructors!</h1><br>
+    Courses Dashboard: &nbsp<a href="/courses" class="btn btn-primary my-2 my-sm-0" role="button"> Manage Course </a> <br> <br>
+    Go help your students here&nbsp<a href="/courses/chatRoom" class="btn btn-secondary my-2 my-sm-0" role="button"> Chat Room </a> <br> <br>
+    <%-include (`../script`)%>
+    <%-include (`../footer`)%>

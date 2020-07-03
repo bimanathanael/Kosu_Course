@@ -1,38 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Manage Courses </title>
-</head>
-<body>
-    <h3> Manage Courses </h3>
-    <a href="/courses/dashboard"> back to dashboard </a> <br> <br>
-    <a href="/courses/addCourse"> Add Course </a> <br> 
-    <table border=1>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Instructor Name</th>
-            <th>Actions</th>
-        </tr>
-        <% data.forEach( course => { %>
-        <tr>
-            <td> <%= course.id %> </td>
-            <td> <%= course.name %> </td>
-            <td> <%= course.description %> </td>
-            <td> <%= getFullName(course.Instructor.full_name) %> </td>
-            <td> 
-                <a href="/courses/showCourse/<%=course.id%>" > Show </a> | 
-                <a href="/courses/editCourse/<%=course.id%>" > Edit </a> | 
-                <a href="/courses/deleteCourse/<%=course.id%>" > Delete </a>
-            </td>
-        </tr>
-        <% }) %>
-
-
+<%-include (`../headerLogin`, {title: `Course's Page`, linkCourse: `/courses`, linkHome: `/courses/dashboard`, statusHome: ``, statusCourse: `active`})%>
+    <h1> Manage Courses </h1><br>
+    <a href="/courses/dashboard" class="btn btn-secondary my-2 my-sm-0" role="button"> back to dashboard </a>
+    <a href="/courses/addCourse" class="btn btn-primary my-2 my-sm-0" role="button"> Add Course </a> <br> <br>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Instructor Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% data.forEach( course => { %>
+            <tr>
+                <td> <%= course.id %> </td>
+                <td> <%= course.name %> </td>
+                <td> <%= course.description %> </td>
+                <td> <%= getFullName(course.Instructor.full_name) %> </td>
+                <td> 
+                    <a href="/courses/showCourse/<%=course.id%>" class="btn btn-success my-2 btn-sm" role="button"> Show </a> | 
+                    <a href="/courses/editCourse/<%=course.id%>" class="btn btn-warning my-2 btn-sm" role="button"> Edit </a> | 
+                    <a href="/courses/deleteCourse/<%=course.id%>" class="btn btn-danger my-2 btn-sm" role="button"> Delete </a>
+                </td>
+            </tr>
+            <% }) %>
+        </tbody>
     </table>
-    
-</body>
-</html>
+    <%-include (`../script`)%>
+    <%-include (`../footer`)%>

@@ -1,33 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Show Course</title>
-</head>
-<body>
-    <h2> Detail Course </h2>
-    <a href="/courses"> < Courses List </a> <br> <br>
-    Course : 
-    <a> <%=data.name %></a>  <br>
-    By Instructor :
-    <a> <%=data.Instructor.dataValues.full_name %> </a> 
-    <br>
-    Details : 
-    <a> <%=data.description %> </a>
-    <br>
-    <br>
-    Chapter:<br>
-    <% data.Chapters.forEach( item=> { %>
-    <a> <%=item.name %> </a><br>
-    <a> <%=item.content %> </a><br>
-    <br>
-    <% }) %>
+<%-include (`../headerLogin`, {title: `Course's Page`, linkCourse: `/courses`, linkHome: `/courses/dashboard`, statusHome: ``, statusCourse: `active`})%>
 
-    Students : <br>
-    <% data.Students.forEach( student=> { %>
-        <li> <%= student.full_name %> </li>
-    <% }) %>
+    <h1> Detail Course </h1><br>
+    <a href="/courses" class="btn btn-secondary my-2 my-sm-0" role="button"> Back to Course's List </a> <br> <br>
+     
+    <h3> Course: <%=data.name %></h3>
+    
+    <h4> By Instructor: <%=data.Instructor.dataValues.full_name %> </h4> 
+    <br>
+    <span><b>Course's detail:</b></span><br>
+    <p> <%=data.description %> </p>
+    <br>
+    <h5>Chapters:</h5>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>content</th>
+            </tr>
+        </thead>
+        <%data.Chapters.forEach( item => { %>
+        <tr>
+            <td><%= item.id %> </td>
+            <td><%= item.name %> </td>
+            <td><%= item.content %> </td>
+        </tr>
+        <% }) %>
+    </table>
 
-</body>
-</html>
+    <h5>Students:</h5>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>No.</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <%let counter = 1%>
+        <% data.Students.forEach( student=> { %>
+        <tr>
+            <td><%= counter %> </td>
+            <td><%= student.full_name %> </td>
+        </tr>
+        <%counter++%>
+        <% }) %>
+    </table>
+    <%-include (`../script`)%>
+    <%-include (`../footer`)%>

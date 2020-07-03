@@ -1,20 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student's Page</title>
-</head>
-<body>
+<%-include (`../headerLogin`, {title: `Student Home`, linkCourse: `/students/courseList`, linkHome: `/students/${data.id}`, statusHome: `active`, statusCourse: ``})%>
     <h1>Welcome back, <%=data.first_name%></h1><br>
-    <form action="/logout" method="POST">
-        <button type="submit">Logout</button>
-    </form><br>
-    <a href="/students/chatRoom/<%=data.id%>"> Chat Room </a> <br> <br>
-    <a href="/students/courseList">Courses Available</a>
-    <a href="/students/courses/add/<%=data.id%>">Take New Course</a>
-    <table border="1">
-        <thead>
+    <a href="/students/chatRoom/<%=data.id%>" class="btn btn-secondary my-2 my-sm-0"> Chat Room </a> <br> <br>
+    <table class="table">
+        <thead class="thead-dark">
             <tr>
                 <th>No.</th>
                 <th>Course Taken</th>
@@ -30,13 +18,14 @@
                     <td><%=item.name%></td>
                     <td><%=item.description%></td>
                     <td>
-                        <a href="/students/activeCourse/<%=item.id%>">Open Course</a>
-                        <a href="/students/course/delete/<%=item.id%>/<%=data.id%>">delete</a>
+                        <a href="/students/activeCourse/<%=item.id%>" class="btn btn-success btn-sm" role="button">Open Course</a>
+                        <a href="/students/course/delete/<%=item.id%>/<%=data.id%>" role="button" class="btn btn-danger btn-sm">delete</a>
                     </td>
                 </tr>
                 <%counter++%>
             <%})%>
         </tbody>
-    </table>
-</body>
-</html>
+    </table><br>
+    <a href="/students/courses/add/<%=data.id%>" class="btn btn-primary my-2 my-sm-0" role="button">Take New Course</a>
+    <%-include (`../script`)%>
+    <%-include (`../footer`)%>

@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Take New Course</title>
-</head>
-<body>
+<%-include (`../headerLogin`, {title: `Register to Course`, linkCourse: `/students/courseList`, linkHome: ``,statusHome: ``, statusCourse: `active`})%>
     <h1>Add New Course</h1>
-    <button onclick="window.history.back()">Back to Course's List</button><br><br>
+    <button onclick="window.history.back()" class="btn btn-secondary my-2 my-sm-0">Back to Course's List</button><br><br>
     <form action="/students/courses/add/<%=studentData.id%>" method="POST">
     <label for="CourseId">Choose New Course:</label><br>
     <select name="CourseId" id="CourseId">
@@ -16,7 +9,7 @@
             <option value="<%=item.id%>"><%=item.name%></option>
         <%})%>
     </select><br><br>
-    <button type="submit">Add Course</button>
+    <button type="submit" class="btn btn-primary my-2 my-sm-0">Add Course</button>
     </form>
-</body>
-</html>
+    <%-include (`../script`)%>
+    <%-include (`../footer`)%>

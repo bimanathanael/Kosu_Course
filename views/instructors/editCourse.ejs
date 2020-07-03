@@ -1,18 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Course</title>
-    <h3> Add Course Form </h3>
+<%-include (`../headerLogin`, {title: `Edit Course`, linkCourse: `/courses`, linkHome: `/courses/dashboard`, statusHome: ``, statusCourse: `active`})%>
+    <h1> Edit Course </h1><br>
     <%if (error) {%>
         <div>
         <%=error%>
         </div>
     <%}%>
-    <a href="/courses"> < Courses List </a> <br> <br>
-
-    <h3> Course Details </h3>
+    <a href="/courses" class="btn btn-secondary my-2 my-sm-0" role="button"> Back to Course's List </a> <br> <br>
     <form action="/courses/editCourse/<%= course.id %>" method="POST">
         Course name : <br> 
         <input name="name" value="<%=course.name%>" > <br><br> 
@@ -23,9 +16,8 @@
             <% instructor.forEach(item => { %>
             <option value="<%= item.dataValues.id %>" <%= (course.InstructorId == item.id) ? "selected" : "" %> > <%= item.dataValues.full_name %>  </option>
             <% }) %>
-
         </select> <br><br>
-        <input type="submit">
+        <button type="submit" class="btn btn-primary my-2 my-sm-0">Update Course</button>
     </form>
 
     <br>
@@ -34,21 +26,23 @@
     
     <br>
     
-    <table border="1">
-        <tr>
-            <th>id</th>
-            <th>name</th>
-            <th>content</th>
-        </tr>
-        <%course.Chapters.forEach( item => { %>
-        <tr>
-            <td><%= item.id %> </td>
-            <td><%= item.name %> </td>
-            <td><%= item.content %> </td>
-        </tr>
-        <% }) %>
-
-
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>content</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%course.Chapters.forEach( item => { %>
+            <tr>
+                <td><%= item.id %> </td>
+                <td><%= item.name %> </td>
+                <td><%= item.content %> </td>
+            </tr>
+            <% }) %>
+        </tbody>
     </table>
     <br>
     <%if (warning) {%>
@@ -56,17 +50,15 @@
         <%=warning%>
         </div>
     <%}%>
+    <h5>Add Chapters</h5>
     <form action="/courses/addChapter/<%= course.id %>" method="POST">
         Chapter name : <br> 
         <input name="name" > <br><br> 
         Content : <br> 
         <input name="content" > <br><br> 
-        <input type="submit" value="add chapter">
+        <button type="submit" class="btn btn-primary my-2 my-sm-0">Add Chapter</button>
     </form>
 
     
-</head>
-<body>
-    
-</body>
-</html>
+    <%-include (`../script`)%>
+    <%-include (`../footer`)%>

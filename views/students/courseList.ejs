@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Courses Available</title>
-</head>
-<body>
+<%-include (`../headerLogin`, {title: `Student's Page`, linkCourse: `/students/courseList`, linkHome: ``,statusHome: ``, statusCourse: `active`})%>
     <h1>Courses Available</h1>
-    <button onclick="window.history.back()">Back to Course's List</button><br><br>
-    <table border="1">
-        <thead>
+   <br>
+    <table class = "table">
+        <thead class="thead-dark">
             <tr>
                 <th>No.</th>
                 <th>Course</th>
@@ -25,12 +18,13 @@
                     <td><%=item.name%></td>
                     <td><%=item.Instructor.full_name%></td>
                     <td>
-                        <a href="/students/chapterList/<%=item.id%>">Course Detail</a>
+                        <a class="btn btn-success btn-sm" role="button" href="/students/chapterList/<%=item.id%>">Course Detail</a>
                     </td>
                 </tr>
                 <%counter++%>
             <%})%>
         </tbody>
     </table>
-</body>
-</html>
+    <button onclick="window.history.back()" class="btn btn-secondary my-2 my-sm-0">Back to your Active Courses</button>   
+    <%-include (`../script`)%>
+    <%-include (`../footer`)%>

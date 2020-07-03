@@ -1,17 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chapter's Page</title>
-</head>
-<body>
+<%-include (`../headerLogin`, {title: `Student's Page`, linkCourse: `/students/courseList`, linkHome: ``,statusHome: ``, statusCourse: `active`})%>
     <h1><%=data.name%></h1>
     <h3>Instructor: <%=data.Instructor.full_name%></h3>
     <p><%=data.description%></p>
-    <button onclick="window.history.back()">Back to Course's List</button><br><br>
-    <table border="1">
-        <thead>
+    <table class="table">
+        <thead class="thead-dark">
             <tr>
                 <th>No.</th>
                 <th>Chapter</th>
@@ -30,5 +22,6 @@
             <%})%>
         </tbody>
     </table>
-</body>
-</html>
+    <button onclick="window.history.back()" class="btn btn-secondary my-2 my-sm-0">Back to Course's List</button>
+    <%-include (`../script`)%>
+    <%-include (`../footer`)%>

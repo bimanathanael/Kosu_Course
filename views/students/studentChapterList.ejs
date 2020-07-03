@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chapter's Page</title>
-</head>
-<body>
+<%-include (`../headerLogin`, {title: `Student's Page`, linkCourse: `/students/courseList`, linkHome: ``,statusHome: `active`, statusCourse: ``})%>
     <h1><%=data.name%></h1>
     <h3>Instructor: <%=data.Instructor.full_name%></h3>
-    <button onclick="window.history.back()">Back to Course's List</button><br><br>
-    <table border="1">
-        <thead>
+    <table class = "table">
+        <thead class="thead-dark">
             <tr>
                 <th>No.</th>
                 <th>Chapter</th>
@@ -20,18 +12,19 @@
         </thead>
         <tbody>
             <%let counter = 1%>
-           <%data.Chapters.forEach(item => {%>
+            <%data.Chapters.forEach(item => {%>
                 <tr>
                     <td><%=counter%></td>
                     <td><%=item.name%></td>
                     <td><%=item.content%></td>
                     <td>
-                        <a href="#">Learn Now</a>
+                        <a href="#" class="btn btn-success my-2 my-sm-0" role="button">Learn</a>
                     </td>
                 </tr>
                 <%counter++%>
-            <%})%>
-        </tbody>
-    </table>
-</body>
-</html>
+                <%})%>
+            </tbody>
+        </table>
+        <button onclick="window.history.back()" class="btn btn-secondary my-2 my-sm-0">Back to your Active Courses</button>
+    <%-include (`../script`)%>
+    <%-include (`../footer`)%>

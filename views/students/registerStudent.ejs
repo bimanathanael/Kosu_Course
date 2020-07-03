@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register Student</title>
-</head>
+<%-include (`../header`, {title: `Register Student`})%>
 <body>
     <h1>Come and Join Kosu!</h1>
     <%if (error) {%>
@@ -22,9 +16,9 @@
         <label for="myinput">Password</label><br>
         <input type="password" name="password" id="myinput" placeholder="*****">
         <br><br>
-        <button type="submit">Register</button>
+        <button type="submit" class="btn btn-primary my-2 my-sm-0">Register</button>
     </form>
     <br>
-    Already have an account? go <a href="/login">login</a>
-</body>
-</html>
+    Already have an account? &nbsp<a href="/login">Login here</a>
+    <%-include (`../script`)%>
+    <%-include (`../footer`)%>
