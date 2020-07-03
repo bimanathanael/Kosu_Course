@@ -9,10 +9,6 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Instructor.hasMany(models.Course)
     }
-    get first_name() {
-      let splitter = this.full_name.split(` `)
-      return splitter[0]
-    }
   };
 
   
