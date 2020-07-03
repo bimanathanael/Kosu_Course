@@ -1,5 +1,6 @@
 const {Student, Instructor} = require(`../models/index`)
 const bcrypt = require(`bcrypt`)
+const {getFullName} = require(`../helpers/function`)
 
 class HomeController {
     
@@ -18,7 +19,10 @@ class HomeController {
             email: req.body.email,
             password: req.body.password
         }
-        newStudent.full_name = `${req.body.first_name} ${req.body.last_name}`
+        let first_name = req.body.first_name
+        let last_name = req.body.last_name
+
+        newStudent.full_name = getFullName(first_name, last_name)
 
         Student.create(newStudent)
         .then((data) => {
@@ -45,7 +49,10 @@ class HomeController {
             email: req.body.email,
             password: req.body.password
         }
-        newTeacher.full_name = `${req.body.first_name} ${req.body.last_name}`
+        let first_name = req.body.first_name
+        let last_name = req.body.last_name
+
+        newTeacher.full_name = getFullName(first_name, last_name)
 
         Instructor.create(newTeacher)
         .then((data) => {

@@ -1,5 +1,5 @@
 const  { Course, Instructor, Chapter, Student } = require('../models/index')
-const getFullName = require(`../helpers/function`)
+const {addSuhu} = require(`../helpers/function`)
 
 class CoursesController{
 
@@ -14,7 +14,7 @@ class CoursesController{
     static view (req, res){
         Course.findAll({include : [Instructor]})
             .then( data => {
-                res.render("./instructors/manageCourses", {data, getFullName})
+                res.render("./instructors/manageCourses", {data, addSuhu})
             })
             .catch( err => {
                 res.send(err)

@@ -1,6 +1,12 @@
 
-function getFullName(fullName) {
+function addSuhu(fullName) {
    return `Suhu ${fullName}`
 }
 
-module.exports = getFullName
+function getFullName(first, second) {
+   let fullName = `${first} ${second}`
+
+   return fullName
+}
+
+module.exports = {addSuhu, getFullName}
