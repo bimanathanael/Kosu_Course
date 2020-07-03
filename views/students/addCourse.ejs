@@ -1,4 +1,4 @@
-<%-include (`../headerLogin`, {title: `Register to Course`, linkCourse: `/students/courseList`, linkHome: ``,statusHome: ``, statusCourse: `active`})%>
+<%-include (`../headerLogin`, {title: `Register to Course`, linkCourse: `/students/courseList`, linkHome: `/students/${studentData.id}`,statusHome: ``, statusCourse: `active`})%>
     <h1>Add New Course</h1>
     <button onclick="window.history.back()" class="btn btn-secondary my-2 my-sm-0">Back to Course's List</button><br><br>
     <form action="/students/courses/add/<%=studentData.id%>" method="POST">

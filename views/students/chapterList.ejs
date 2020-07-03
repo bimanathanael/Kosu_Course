@@ -1,4 +1,4 @@
-<%-include (`../headerLogin`, {title: `Student's Page`, linkCourse: `/students/courseList`, linkHome: ``,statusHome: ``, statusCourse: `active`})%>
+<%-include (`../headerLogin`, {title: `Student's Page`, linkCourse: `/students/courseList`, linkHome: `/students/${StudentId}`,statusHome: ``, statusCourse: `active`})%>
     <h1><%=data.name%></h1>
     <h3>Instructor: <%=data.Instructor.full_name%></h3>
     <p><%=data.description%></p>

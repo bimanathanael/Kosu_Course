@@ -1,5 +1,6 @@
 const {Student, Course, Chapter, Instructor, StudentCourse} = require(`../models/index`)
 
+
 class StudentController {
     static homepage(req, res) {
         Student.findByPk(+req.params.id, {include: Course})
@@ -62,9 +63,10 @@ class StudentController {
     }
 
     static courseList(req, res) {
+        const StudentId = req.session.StudentId
         Course.findAll({include: Instructor})
         .then((data) => {
-            res.render(`./students/courseList`, {data})
+            res.render(`./students/courseList`, {data, StudentId})
         })
         .catch((err) => {
             res.send(err)
@@ -73,10 +75,11 @@ class StudentController {
 
     static chapterList(req, res) {
         let id = +req.params.id
+        const StudentId = req.session.StudentId
 
         Course.findByPk(id, {include: [Instructor, Chapter]})
         .then((data) => {
-            res.render(`./students/chapterList`, {data})
+            res.render(`./students/chapterList`, {data, StudentId})
         })
         .catch((err) => {
             res.send(err)
@@ -85,9 +88,10 @@ class StudentController {
 
     static studentChapterList(req, res) {
         let id = +req.params.id
+        const StudentId = req.session.StudentId
         Course.findByPk(id, {include: [Instructor, Chapter]})
         .then((data) => {
-            res.render(`./students/studentChapterList`, {data})
+            res.render(`./students/studentChapterList`, {data,StudentId})
         })
         .catch((err) => {
             res.send(err)
