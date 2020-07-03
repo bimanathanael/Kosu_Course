@@ -5,7 +5,7 @@ function checkSessionInstructor(req, res, next) {
     if (req.session.InstructorId) {
         next()
      } else {
-         res.send(`unauthorized!`)
+         res.redirect(`/`)
      } 
 }
 

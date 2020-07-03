@@ -5,7 +5,7 @@ function checkSessionStudent(req, res, next) {
     if (req.session.StudentId && req.session.userType === `student`) {
         next()
      } else {
-         res.send(`unauthorized!`)
+         res.redirect(`/`)
      } 
 }
 
